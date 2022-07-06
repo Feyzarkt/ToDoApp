@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.123" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_register.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/item_home.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
