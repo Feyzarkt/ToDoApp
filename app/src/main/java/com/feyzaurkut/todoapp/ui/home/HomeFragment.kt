@@ -1,22 +1,27 @@
 package com.feyzaurkut.todoapp.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.feyzaurkut.todoapp.R
+import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var auth: FirebaseAuth
+    @Inject
+    lateinit var auth: FirebaseAuth
+    //private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +29,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        auth = Firebase.auth
         initListeners()
 
         return binding.root
@@ -36,7 +40,14 @@ class HomeFragment : Fragment() {
                 auth.signOut()
                 findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             }
+            btnCreateItem.setOnClickListener {
+                createNote()
+            }
         }
+    }
+
+    private fun createNote() {
+        //homeViewModel.createNote(Note("Deneme Feyza2", "DENEME FEYZA 222"))
     }
 
 }
