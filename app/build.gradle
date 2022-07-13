@@ -63,4 +63,7 @@ dependencies {
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1"
+
+    //ColorSheet
+    implementation "dev.sasikanth:colorsheet:1.0.1"
 }
