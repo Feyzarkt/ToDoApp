@@ -12,4 +12,13 @@ class FirebaseRepository @Inject constructor(
     suspend fun createNote(note: Note) =
         firebaseFirestoreSourceProvider.createNote(note)
 
+    suspend fun getNotes(): ArrayList<Note> =
+        firebaseFirestoreSourceProvider.getNotes()
+
+    suspend fun getSelectedNote(docId: String): Note =
+        firebaseFirestoreSourceProvider.getSelectedNote(docId)
+
+    suspend fun updateNote(docId: String, title: String, description: String) =
+        firebaseFirestoreSourceProvider.updateNote(docId, title, description)
+
 }
