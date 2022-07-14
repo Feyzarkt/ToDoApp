@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.databinding.FragmentRegisterBinding
+import com.feyzaurkut.todoapp.utils.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -50,11 +51,13 @@ class RegisterFragment : Fragment() {
 
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
+        val username = binding.etUsername.text.toString()
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
+                    SharedPreferences(requireContext()).putUsernameString(username)
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 } else {
                     Log.e("RegisterFailed", task.exception.toString())
