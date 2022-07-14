@@ -15,11 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
-import dev.sasikanth.colorsheet.ColorSheet
-import com.feyzaurkut.todoapp.databinding.CreateNoteDialogBinding
 import com.feyzaurkut.todoapp.databinding.UpdateNoteDialogBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -55,23 +52,20 @@ class UpdateNoteDialog(private val note: Note) : DialogFragment() {
 
 
     private fun initDialog() {
-       with(binding) {
-           btnUpdate.setOnClickListener {
-               val title = etTitle.text.toString()
-               val description = etDescription.text.toString()
-               updateNote(title, description)
-               dismiss()
-           }
-       }
+        with(binding) {
+            btnUpdate.setOnClickListener {
+                val title = etTitle.text.toString()
+                val description = etDescription.text.toString()
+                updateNote(title, description)
+                dismiss()
+            }
+        }
     }
 
     private fun updateNote(title: String, description: String) {
-        if (title.isEmpty() || description.isEmpty()){
+        if (title.isEmpty() || description.isEmpty()) {
             Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
         } else {
-            Log.e("title", title)
-            Log.e("descript", description)
-
             note.id?.let { homeViewModel.updateNote(it, title, description) }
         }
     }
@@ -84,8 +78,14 @@ class UpdateNoteDialog(private val note: Note) : DialogFragment() {
                     when (noteResult) {
                         is RequestState.Success -> {
                             Log.e("Success", noteResult.data.toString())
-                            binding.etTitle.setText(noteResult.data.title.toString(),TextView.BufferType.EDITABLE)
-                            binding.etDescription.setText(noteResult.data.description.toString(),TextView.BufferType.EDITABLE)
+                            binding.etTitle.setText(
+                                noteResult.data.title.toString(),
+                                TextView.BufferType.EDITABLE
+                            )
+                            binding.etDescription.setText(
+                                noteResult.data.description.toString(),
+                                TextView.BufferType.EDITABLE
+                            )
                         }
                         is RequestState.Error -> {
                             Log.e("Error", noteResult.exception.toString())
