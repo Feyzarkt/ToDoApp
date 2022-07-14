@@ -2,7 +2,6 @@ package com.feyzaurkut.todoapp.ui.home
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,8 @@ import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.databinding.ItemHomeBinding
 import com.feyzaurkut.todoapp.utils.OnClickListener
+import com.feyzaurkut.todoapp.utils.SharedPreferences
 import dev.sasikanth.colorsheet.ColorSheet
-
 
 class ToDoListRecyclerAdapter(
     private val context: Context,
@@ -30,6 +29,15 @@ class ToDoListRecyclerAdapter(
             with(binding) {
                 tvTitle.text = note.title
                 tvDescription.text = note.description
+
+                val sharedColor = note.id?.let { SharedPreferences(context).getColorInt(it) }
+                val gd = GradientDrawable()
+                gd.cornerRadius = 17f
+                if (sharedColor != null) {
+                    gd.setStroke(6, sharedColor)
+                }
+                clItem.background = gd
+
                 ivColorSelector.setOnClickListener {
                     val colors = context.resources.getIntArray(R.array.colors)
                     activity.let {
@@ -39,9 +47,9 @@ class ToDoListRecyclerAdapter(
                             listener = { color ->
                                 val gd = GradientDrawable()
                                 gd.cornerRadius = 17f
-                                gd.setStroke(2, color)
-                                gd.setColor(color)
+                                gd.setStroke(6, color)
                                 clItem.background = gd
+                                note.id?.let { it1 -> SharedPreferences(context).putColorInt(it1, color) }
                             })
                             .show(it.supportFragmentManager)
                     }
