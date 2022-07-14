@@ -4,10 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
-import com.feyzaurkut.todoapp.domain.usecase.CreateNoteUseCase
-import com.feyzaurkut.todoapp.domain.usecase.GetNotesUseCase
-import com.feyzaurkut.todoapp.domain.usecase.GetSelectedNoteUseCase
-import com.feyzaurkut.todoapp.domain.usecase.UpdateNoteUseCase
+import com.feyzaurkut.todoapp.domain.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +16,8 @@ class HomeViewModel @Inject constructor(
     private val createNoteUseCase: CreateNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
     private val getSelectedNoteUseCase: GetSelectedNoteUseCase,
-    private val updateNoteUseCase: UpdateNoteUseCase
+    private val updateNoteUseCase: UpdateNoteUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase
 ) : ViewModel() {
 
     private val _notesState = MutableStateFlow<RequestState<ArrayList<Note>>?>(null)
@@ -47,6 +45,11 @@ class HomeViewModel @Inject constructor(
 
     fun updateNote(docId: String, title: String, description: String) = viewModelScope.launch {
         updateNoteUseCase.invoke(docId, title, description).collect {
+        }
+    }
+
+    fun deleteNote(docId: String) = viewModelScope.launch {
+        deleteNoteUseCase.invoke(docId).collect {
         }
     }
 }

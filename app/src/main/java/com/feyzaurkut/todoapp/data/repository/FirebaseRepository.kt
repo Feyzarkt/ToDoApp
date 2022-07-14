@@ -21,4 +21,7 @@ class FirebaseRepository @Inject constructor(
     suspend fun updateNote(docId: String, title: String, description: String) =
         firebaseFirestoreSourceProvider.updateNote(docId, title, description)
 
+    suspend fun deleteNote(docId: String) =
+        firebaseFirestoreSourceProvider.deleteNote(docId)
+
 }

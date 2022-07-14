@@ -9,5 +9,6 @@ interface FirebaseFirestoreSource {
     suspend fun getNotes(): ArrayList<Note>
     suspend fun getSelectedNote(docId: String): Note
     suspend fun updateNote(docId: String, title: String, description: String)
+    suspend fun deleteNote(docId: String)
 
 }

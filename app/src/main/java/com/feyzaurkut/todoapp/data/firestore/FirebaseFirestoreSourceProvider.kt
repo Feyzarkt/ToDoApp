@@ -34,9 +34,6 @@ class FirebaseFirestoreSourceProvider @Inject constructor(
                         notesDocuments.forEach { noteDocument ->
                             val note = Note(noteDocument.id, noteDocument.getString("title"), noteDocument.getString("description"))
                             noteList.add(note)
-                            /*noteDocument.toObject(Note::class.java)?.let { noteResult ->
-                                noteList.add(noteResult)
-                            }*/
                         }
                         def.complete(noteList)
                     }
@@ -67,6 +64,13 @@ class FirebaseFirestoreSourceProvider @Inject constructor(
                 "title" to title,
                 "description" to description
             )).await()
+        }
+    }
+
+    override suspend fun deleteNote(docId: String) {
+        auth.uid?.let {
+            firebaseFirestore.collection(USERS).document(it).collection(NOTES).document(docId)
+                .delete().await()
         }
     }
 
