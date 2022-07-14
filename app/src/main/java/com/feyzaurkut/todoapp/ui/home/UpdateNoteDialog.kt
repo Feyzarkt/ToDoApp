@@ -56,18 +56,18 @@ class UpdateNoteDialog(private val note: Note) : DialogFragment() {
             btnUpdate.setOnClickListener {
                 val title = etTitle.text.toString()
                 val description = etDescription.text.toString()
-                updateNote(title, description)
-                dismiss()
+                if (title.isEmpty() || description.isEmpty()) {
+                    Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
+                } else {
+                    updateNote(title, description)
+                }
             }
         }
     }
 
     private fun updateNote(title: String, description: String) {
-        if (title.isEmpty() || description.isEmpty()) {
-            Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
-        } else {
-            note.id?.let { homeViewModel.updateNote(it, title, description) }
-        }
+        note.id?.let { homeViewModel.updateNote(it, title, description) }
+        dismiss()
     }
 
     private fun getNote() {
