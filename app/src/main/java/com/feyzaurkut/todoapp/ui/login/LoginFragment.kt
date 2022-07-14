@@ -1,5 +1,6 @@
 package com.feyzaurkut.todoapp.ui.login
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater)
 
         initListeners()
+        binding.tvSignUp.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         return binding.root
     }
@@ -51,18 +53,24 @@ class LoginFragment : Fragment() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
 
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                } else {
-                    Log.e("SignInFailed", task.exception.toString())
-                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    binding.etEmail.setText("")
-                    binding.etPassword.setText("")
+        if (email.isEmpty() || password.isEmpty()){
+            Toast.makeText(context, "Please check related fields", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    } else {
+                        Log.e("SignInFailed", task.exception.toString())
+                        Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        binding.etEmail.setText("")
+                        binding.etPassword.setText("")
+                    }
                 }
-            }
+        }
+
     }
 
 }

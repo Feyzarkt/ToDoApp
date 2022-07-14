@@ -1,5 +1,6 @@
 package com.feyzaurkut.todoapp.ui.register
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -31,6 +32,7 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(inflater)
 
         initListeners()
+        binding.tvSignIn.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         return binding.root
     }
@@ -53,19 +55,25 @@ class RegisterFragment : Fragment() {
         val password = binding.etPassword.text.toString()
         val username = binding.etUsername.text.toString()
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    SharedPreferences(requireContext()).putUsernameString(username)
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                } else {
-                    Log.e("RegisterFailed", task.exception.toString())
-                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    binding.etUsername.setText("")
-                    binding.etEmail.setText("")
-                    binding.etPassword.setText("")
+        if (email.isEmpty() || password.isEmpty() || username.isEmpty()){
+            Toast.makeText(context, "Please check related fields", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
+                        SharedPreferences(requireContext()).putUsernameString(username)
+                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    } else {
+                        Log.e("RegisterFailed", task.exception.toString())
+                        Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        binding.etUsername.setText("")
+                        binding.etEmail.setText("")
+                        binding.etPassword.setText("")
+                    }
                 }
-            }
+        }
+
     }
 }
