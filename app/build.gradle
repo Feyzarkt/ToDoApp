@@ -66,4 +66,7 @@ dependencies {
 
     //ColorSheet
     implementation "dev.sasikanth:colorsheet:1.0.1"
+
+    //SwipeDecorator
+    implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
 }
