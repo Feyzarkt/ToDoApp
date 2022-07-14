@@ -29,7 +29,11 @@ class ToDoListRecyclerAdapter(
             with(binding) {
                 tvTitle.text = note.title
                 tvDescription.text = note.description
+                clItem.setOnClickListener {
+                    onClickListener.onClick(adapterPosition)
+                }
 
+                initColorPickerListener(note)
                 val sharedColor = note.id?.let { SharedPreferences(context).getColorInt(it) }
                 val gd = GradientDrawable()
                 gd.cornerRadius = 17f
@@ -38,6 +42,16 @@ class ToDoListRecyclerAdapter(
                 }
                 clItem.background = gd
 
+                initCheckboxListener(note)
+                val isChecked = note.id?.let { SharedPreferences(context).getCheckboxBoolean("$it*") }
+                if (isChecked != null) {
+                    checkbox.isChecked = isChecked
+                }
+            }
+        }
+
+        private fun initColorPickerListener(note: Note){
+            with(binding) {
                 ivColorSelector.setOnClickListener {
                     val colors = context.resources.getIntArray(R.array.colors)
                     activity.let {
@@ -49,14 +63,20 @@ class ToDoListRecyclerAdapter(
                                 gd.cornerRadius = 17f
                                 gd.setStroke(6, color)
                                 clItem.background = gd
-                                note.id?.let { it1 -> SharedPreferences(context).putColorInt(it1, color) }
+                                note.id?.let { it -> SharedPreferences(context).putColorInt(it, color) }
                             })
                             .show(it.supportFragmentManager)
                     }
                 }
-                clItem.setOnClickListener {
-                    onClickListener.onClick(adapterPosition)
-                }
+            }
+        }
+
+        private fun initCheckboxListener(note: Note) {
+            binding.checkbox.setOnClickListener {
+                if (binding.checkbox.isChecked)
+                    note.id?.let { it -> SharedPreferences(context).putCheckboxBoolean("$it*", true) }
+                else
+                    note.id?.let { it -> SharedPreferences(context).putCheckboxBoolean("$it*", false) }
             }
         }
     }

@@ -29,4 +29,12 @@ class SharedPreferences(private val context: Context) {
     fun getUsernameString(): String{
         return createPreferences()?.getString(Constants.USERNAME, "") ?: ""
     }
+
+    fun putCheckboxBoolean(key: String, value: Boolean){
+        createEditor()?.putBoolean(key, value)?.apply()
+    }
+
+    fun getCheckboxBoolean(key: String): Boolean{
+        return createPreferences()?.getBoolean(key, false) ?: false
+    }
 }
