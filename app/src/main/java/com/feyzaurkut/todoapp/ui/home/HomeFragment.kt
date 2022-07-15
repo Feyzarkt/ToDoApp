@@ -1,10 +1,12 @@
 package com.feyzaurkut.todoapp.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,9 +43,11 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        binding.tvWelcome.text = "Welcome ${SharedPreferences(requireContext()).getUsernameString()}!"
+        binding.tvWelcome.text =
+            "Welcome ${SharedPreferences(requireContext()).getUsernameString()}!"
         initListeners()
         getNotes()
+        onBackPressed()
 
         return binding.root
     }
@@ -51,8 +55,7 @@ class HomeFragment : Fragment() {
     private fun initListeners() {
         with(binding) {
             ivLogout.setOnClickListener {
-                auth.signOut()
-                findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+                initLogoutDialog()
             }
             btnCreateItem.setOnClickListener {
                 activity?.supportFragmentManager?.let {
@@ -63,6 +66,20 @@ class HomeFragment : Fragment() {
                 getNotes()
             }
         }
+    }
+
+    private fun initLogoutDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(activity)
+        alertDialogBuilder.setTitle("Logout")
+        alertDialogBuilder.setMessage("Are you sure you want to exit?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            auth.signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        }
+        alertDialogBuilder.setNegativeButton("Cancel") { _, _ -> }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     private fun getNotes() {
@@ -118,6 +135,15 @@ class HomeFragment : Fragment() {
 
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.rvToDoList)
         binding.rvToDoList.adapter = toDoAdapter
+    }
+
+    private fun onBackPressed() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
 }
