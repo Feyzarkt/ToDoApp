@@ -10,13 +10,18 @@
     <color name="prince_grey">#A0ADAC</color>
 
     <array name="colors">
+        <item>#000000</item>
         <item>#fad000</item>
+        <item>#fdb863</item>
         <item>#E91E63</item>
         <item>#eb96eb</item>
-        <item>#6accbc</item>
-        <item>#0081a8</item>
-        <item>#7ecc49</item>
-        <item>#fdb863</item>
         <item>#FF0000</item>
+        <item>#0081a8</item>
+        <item>#6accbc</item>
+        <item>#7ecc49</item>
     </array>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>
