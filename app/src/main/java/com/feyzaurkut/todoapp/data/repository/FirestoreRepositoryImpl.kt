@@ -1,6 +1,7 @@
-package com.feyzaurkut.todoapp.data.firestore
+package com.feyzaurkut.todoapp.data.repository
 
 import com.feyzaurkut.todoapp.data.model.Note
+import com.feyzaurkut.todoapp.domain.repository.FirestoreRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CompletableDeferred
@@ -10,11 +11,11 @@ import javax.inject.Inject
 const val USERS = "users"
 const val NOTES = "notes"
 
-class FirebaseFirestoreSourceProvider @Inject constructor(
+class FirestoreRepositoryImpl @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore,
     private val auth: FirebaseAuth
 ) :
-    FirebaseFirestoreSource {
+    FirestoreRepository {
 
     override suspend fun createNote(note: Note) {
         auth.uid?.let {

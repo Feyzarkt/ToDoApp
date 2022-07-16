@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home
+package com.feyzaurkut.todoapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

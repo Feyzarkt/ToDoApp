@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home
+package com.feyzaurkut.todoapp.presentation.home
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -20,8 +20,8 @@ import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
 import com.feyzaurkut.todoapp.databinding.FragmentHomeBinding
-import com.feyzaurkut.todoapp.ui.home.dialogs.CreateNoteDialog
-import com.feyzaurkut.todoapp.ui.home.dialogs.UpdateNoteDialog
+import com.feyzaurkut.todoapp.presentation.home.dialogs.CreateNoteDialog
+import com.feyzaurkut.todoapp.presentation.home.dialogs.UpdateNoteDialog
 import com.feyzaurkut.todoapp.utils.OnClickListener
 import com.feyzaurkut.todoapp.utils.SharedPreferences
 import com.feyzaurkut.todoapp.utils.SwipeGesture

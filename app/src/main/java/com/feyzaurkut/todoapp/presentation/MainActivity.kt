@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui
+package com.feyzaurkut.todoapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

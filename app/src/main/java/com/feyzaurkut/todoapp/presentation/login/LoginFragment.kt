@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.login
+package com.feyzaurkut.todoapp.presentation.login
 
 import android.graphics.Paint
 import android.os.Bundle
@@ -13,8 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

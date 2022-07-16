@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home.dialogs
+package com.feyzaurkut.todoapp.presentation.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -18,7 +18,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
 import com.feyzaurkut.todoapp.databinding.UpdateNoteDialogBinding
-import com.feyzaurkut.todoapp.ui.home.HomeViewModel
+import com.feyzaurkut.todoapp.presentation.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -68,6 +68,7 @@ class UpdateNoteDialog(private val note: Note) : DialogFragment() {
 
     private fun updateNote(title: String, description: String) {
         note.id?.let { homeViewModel.updateNote(it, title, description) }
+        Toast.makeText(context, "Please swipe to refresh the page..", Toast.LENGTH_SHORT).show()
         dismiss()
     }
 

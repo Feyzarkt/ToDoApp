@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.feyzaurkut.todoapp.ui.login.LoginFragment"
+        android:name="com.feyzaurkut.todoapp.presentation.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.feyzaurkut.todoapp.ui.register.RegisterFragment"
+        android:name="com.feyzaurkut.todoapp.presentation.register.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.feyzaurkut.todoapp.ui.home.HomeFragment"
+        android:name="com.feyzaurkut.todoapp.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action

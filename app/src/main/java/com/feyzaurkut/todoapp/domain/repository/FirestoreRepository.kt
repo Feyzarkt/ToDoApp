@@ -1,9 +1,9 @@
-package com.feyzaurkut.todoapp.data.firestore
+package com.feyzaurkut.todoapp.domain.repository
 
 import com.feyzaurkut.todoapp.data.model.Note
 
 
-interface FirebaseFirestoreSource {
+interface FirestoreRepository {
 
     suspend fun createNote(note: Note)
     suspend fun getNotes(): ArrayList<Note>

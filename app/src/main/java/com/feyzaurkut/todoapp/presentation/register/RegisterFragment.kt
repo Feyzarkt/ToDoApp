@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.register
+package com.feyzaurkut.todoapp.presentation.register
 
 import android.graphics.Paint
 import android.os.Bundle
@@ -14,8 +14,6 @@ import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.databinding.FragmentRegisterBinding
 import com.feyzaurkut.todoapp.utils.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

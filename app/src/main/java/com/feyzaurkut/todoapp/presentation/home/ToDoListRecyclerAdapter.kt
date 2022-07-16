@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home
+package com.feyzaurkut.todoapp.presentation.home
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -38,9 +38,12 @@ class ToDoListRecyclerAdapter(
                 val gd = GradientDrawable()
                 gd.cornerRadius = 17f
                 if (sharedColor != null) {
-                    gd.setStroke(6, sharedColor)
+                    gd.setStroke(3, sharedColor)
+                    tvTitle.setTextColor(sharedColor)
+                    tvDescription.setTextColor(sharedColor)
                 }
                 clItem.background = gd
+
 
                 initCheckboxListener(note)
                 val isChecked = note.id?.let { SharedPreferences(context).getCheckboxBoolean("$it*") }
@@ -61,8 +64,10 @@ class ToDoListRecyclerAdapter(
                             listener = { color ->
                                 val gd = GradientDrawable()
                                 gd.cornerRadius = 17f
-                                gd.setStroke(6, color)
+                                gd.setStroke(3, color)
                                 clItem.background = gd
+                                tvTitle.setTextColor(color)
+                                tvDescription.setTextColor(color)
                                 note.id?.let { it -> SharedPreferences(context).putColorInt(it, color) }
                             })
                             .show(it.supportFragmentManager)
