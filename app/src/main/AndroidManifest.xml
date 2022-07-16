@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feyzaurkut.todoapp">
+    package="com.feyzaurkut.todoapp" >
 
     <application
         android:name=".MainApplication"
@@ -9,15 +9,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ToDoApp">
+        android:theme="@style/Theme.ToDoApp" >
+        <receiver
+            android:name=".widgets.medium.MediumWidget"
+            android:exported="true"
+            android:label="Medium Widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-        <service android:name=".widgets.WidgetService"
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/medium_widget_info" />
+        </receiver>
+        <service
+            android:name=".widgets.medium.MediumWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver
-            android:name=".widgets.SmallWidget"
+            android:name=".widgets.small.SmallWidget"
             android:exported="true"
-            android:label="Small Widget">
+            android:label="Small Widget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -26,10 +38,13 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/small_widget_info" />
         </receiver>
+        <service
+            android:name=".widgets.small.SmallWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
