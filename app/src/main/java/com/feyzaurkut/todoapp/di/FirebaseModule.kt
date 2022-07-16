@@ -1,5 +1,7 @@
 package com.feyzaurkut.todoapp.di
 
+import com.feyzaurkut.todoapp.domain.repository.FirestoreRepository
+import com.feyzaurkut.todoapp.data.repository.FirestoreRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,8 +25,14 @@ class FirebaseModule {
 
     @Singleton
     @Provides
+    fun provideFirestoreRepository(
+        firebaseFirestore: FirebaseFirestore,
+        auth: FirebaseAuth
+    ): FirestoreRepository = FirestoreRepositoryImpl(firebaseFirestore, auth)
+
+    @Singleton
+    @Provides
     fun provideFirebaseAuthInstance(): FirebaseAuth {
         return Firebase.auth
     }
-
 }
