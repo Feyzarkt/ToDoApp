@@ -6,6 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.login.LoginFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
@@ -20,7 +30,7 @@
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TODO APP"
+        android:text="@string/todo_app"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:layout_marginTop="15dp"
@@ -36,7 +46,7 @@
         android:layout_marginHorizontal="30dp"
         android:textColor="@color/black"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="@string/email"
         android:textColorHint="@android:color/darker_gray"
         android:background="@drawable/bg_edit_text"
         app:layout_constraintTop_toBottomOf="@id/tvAppName"/>
@@ -49,7 +59,7 @@
         android:layout_marginHorizontal="30dp"
         android:textColor="@color/black"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColorHint="@android:color/darker_gray"
         android:background="@drawable/bg_edit_text"
         app:layout_constraintTop_toBottomOf="@id/etEmail"/>
@@ -59,8 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button"
-        android:text="Sign In"
-        android:textColor="@color/black"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:layout_marginTop="55dp"
         android:layout_marginHorizontal="70dp"
@@ -73,7 +83,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="Don't have an account yet? Sign Up"
+        android:text="@string/dont_have_an_account_yet"
         app:layout_constraintTop_toBottomOf="@id/btnSignIn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

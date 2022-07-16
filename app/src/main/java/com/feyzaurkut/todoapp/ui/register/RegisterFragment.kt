@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.feyzaurkut.todoapp.R
@@ -59,11 +60,13 @@ class RegisterFragment : Fragment() {
             Toast.makeText(context, "Please check related fields", Toast.LENGTH_SHORT).show()
         }
         else {
+            binding.progressBar.isVisible = true
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(context, "Authentication success.", Toast.LENGTH_SHORT).show()
                         SharedPreferences(requireContext()).putUsernameString(username)
+                        binding.progressBar.isVisible = false
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     } else {
                         Log.e("RegisterFailed", task.exception.toString())
