@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home
+package com.feyzaurkut.todoapp.ui.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -18,6 +18,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
 import com.feyzaurkut.todoapp.databinding.UpdateNoteDialogBinding
+import com.feyzaurkut.todoapp.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

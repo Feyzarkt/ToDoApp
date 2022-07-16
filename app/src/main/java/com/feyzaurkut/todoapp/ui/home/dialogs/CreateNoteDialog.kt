@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.ui.home
+package com.feyzaurkut.todoapp.ui.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.databinding.CreateNoteDialogBinding
+import com.feyzaurkut.todoapp.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

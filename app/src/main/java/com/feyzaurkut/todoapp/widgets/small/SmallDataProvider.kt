@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.widgets
+package com.feyzaurkut.todoapp.widgets.small
 
 import android.R.id.text1
 import android.R.layout.simple_list_item_1
@@ -7,7 +7,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 
-class DataProvider(
+class SmallDataProvider(
     private val context: Context,
     private val intent: Intent,
     private val titlesOfNotes: ArrayList<String>

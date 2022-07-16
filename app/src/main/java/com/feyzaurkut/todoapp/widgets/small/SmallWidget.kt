@@ -1,4 +1,4 @@
-package com.feyzaurkut.todoapp.widgets
+package com.feyzaurkut.todoapp.widgets.small
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -72,7 +72,7 @@ class SmallWidget : AppWidgetProvider() {
     }
 
     private fun setRemoteAdapter(context: Context, views: RemoteViews) {
-        val intent = Intent(context, WidgetService::class.java)
+        val intent = Intent(context, SmallWidgetService::class.java)
         intent.putExtra("titlesOfNotes", titlesOfNotes)
         views.setRemoteAdapter(R.id.lvNotes, intent)
     }

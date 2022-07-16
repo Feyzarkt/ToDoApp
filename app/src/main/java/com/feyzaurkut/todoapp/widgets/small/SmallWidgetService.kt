@@ -1,14 +1,14 @@
-package com.feyzaurkut.todoapp.widgets
+package com.feyzaurkut.todoapp.widgets.small
 
 import android.content.Intent
 import android.widget.RemoteViewsService
 
-class WidgetService: RemoteViewsService() {
+class SmallWidgetService: RemoteViewsService() {
 
     private lateinit var titlesOfNotes: ArrayList<String>
 
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
         titlesOfNotes = intent.getStringArrayListExtra("titlesOfNotes") as ArrayList<String>
-        return DataProvider(this.applicationContext, intent, titlesOfNotes)
+        return SmallDataProvider(this.applicationContext, intent, titlesOfNotes)
     }
 }

@@ -20,6 +20,8 @@ import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
 import com.feyzaurkut.todoapp.databinding.FragmentHomeBinding
+import com.feyzaurkut.todoapp.ui.home.dialogs.CreateNoteDialog
+import com.feyzaurkut.todoapp.ui.home.dialogs.UpdateNoteDialog
 import com.feyzaurkut.todoapp.utils.OnClickListener
 import com.feyzaurkut.todoapp.utils.SharedPreferences
 import com.feyzaurkut.todoapp.utils.SwipeGesture
