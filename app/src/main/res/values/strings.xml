@@ -5,7 +5,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
-    <string name="create_note">CREATE NOTE</string>
+    <string name="create_note">Create Note</string>
     <string name="title">Title</string>
     <string name="enter_your_note">Enter your note...</string>
     <string name="create">Create</string>
@@ -17,6 +17,6 @@
     <string name="username">Username</string>
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account">Already have an account? Sign In</string>
-    <string name="update_note">UPDATE NOTE</string>
+    <string name="update_note">Update Note</string>
     <string name="update">Update</string>
 </resources>

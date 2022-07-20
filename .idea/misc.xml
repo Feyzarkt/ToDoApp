@@ -3,12 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cartec/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_expandable_list_item_1.xml" value="0.1" />
+        <entry key="..\:/Users/cartec/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_expandable_list_item_2.xml" value="0.1" />
+        <entry key="..\:/Users/cartec/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_activated_1.xml" value="0.1" />
+        <entry key="..\:/Users/cartec/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_activated_2.xml" value="0.1" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.14" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bd_checkbox.xml" value="0.14" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_button.xml" value="0.123" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_checked.xml" value="0.14" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_dialog.xml" value="0.123" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.123" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_item.xml" value="0.1" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/bg_unchecked.xml" value="0.14" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/edit_text_style.xml" value="0.123" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/ic_checked.xml" value="0.1325" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/drawable/ic_unchecked.xml" value="0.1325" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/create_note_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/fragment_register.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/item_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/item_widget.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/medium_widget.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/small_widget.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/cartec/Documents/ToDoApp/app/src/main/res/layout/update_note_dialog.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
