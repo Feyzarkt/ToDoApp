@@ -1,11 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.ToDoApp.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.ToDoApp.AppWidgetContainer">
 
+    <TextView
+        android:id="@+id/tvTitleSmallWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="TO-DO"
+        android:textSize="24sp"
+        android:background="@color/prince_grey"
+        android:textColor="@color/black"
+        android:layout_alignParentTop="true"/>
+
     <ListView
         android:id="@+id/lvNotes"
-        android:layout_width="395dp"
-        android:layout_height="715dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_black"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tvTitleSmallWidget"/>
 </RelativeLayout>
