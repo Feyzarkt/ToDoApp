@@ -1,6 +1,7 @@
 package com.feyzaurkut.todoapp.presentation.home
 
 import android.content.Context
+import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -46,14 +47,16 @@ class ToDoListRecyclerAdapter(
 
 
                 initCheckboxListener(note)
-                val isChecked = note.id?.let { SharedPreferences(context).getCheckboxBoolean("$it*") }
+                val isChecked =
+                    note.id?.let { SharedPreferences(context).getCheckboxBoolean("$it*") }
                 if (isChecked != null) {
                     checkbox.isChecked = isChecked
+                    setPaintFlag(isChecked)
                 }
             }
         }
 
-        private fun initColorPickerListener(note: Note){
+        private fun initColorPickerListener(note: Note) {
             with(binding) {
                 ivColorSelector.setOnClickListener {
                     val colors = context.resources.getIntArray(R.array.colors)
@@ -68,7 +71,12 @@ class ToDoListRecyclerAdapter(
                                 clItem.background = gd
                                 tvTitle.setTextColor(color)
                                 tvDescription.setTextColor(color)
-                                note.id?.let { it -> SharedPreferences(context).putColorInt(it, color) }
+                                note.id?.let { it ->
+                                    SharedPreferences(context).putColorInt(
+                                        it,
+                                        color
+                                    )
+                                }
                             })
                             .show(it.supportFragmentManager)
                     }
@@ -77,11 +85,28 @@ class ToDoListRecyclerAdapter(
         }
 
         private fun initCheckboxListener(note: Note) {
-            binding.checkbox.setOnClickListener {
-                if (binding.checkbox.isChecked)
-                    note.id?.let { it -> SharedPreferences(context).putCheckboxBoolean("$it*", true) }
-                else
-                    note.id?.let { it -> SharedPreferences(context).putCheckboxBoolean("$it*", false) }
+            with(binding) {
+                checkbox.setOnClickListener {
+                    setPaintFlag(checkbox.isChecked)
+                    note.id?.let { it ->
+                        SharedPreferences(context).putCheckboxBoolean(
+                            "$it*",
+                            checkbox.isChecked
+                        )
+                    }
+                }
+            }
+        }
+
+        private fun setPaintFlag(isChecked: Boolean) {
+            with(binding) {
+                if (isChecked) {
+                    tvTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    tvDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                } else {
+                    tvTitle.paintFlags = Paint.ANTI_ALIAS_FLAG
+                    tvDescription.paintFlags = Paint.ANTI_ALIAS_FLAG
+                }
             }
         }
     }
