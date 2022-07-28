@@ -6,7 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,8 +24,6 @@ import com.feyzaurkut.todoapp.R
 import com.feyzaurkut.todoapp.data.model.Note
 import com.feyzaurkut.todoapp.data.model.RequestState
 import com.feyzaurkut.todoapp.databinding.FragmentHomeBinding
-import com.feyzaurkut.todoapp.presentation.home.dialogs.CreateNoteDialog
-import com.feyzaurkut.todoapp.presentation.home.dialogs.UpdateNoteDialog
 import com.feyzaurkut.todoapp.utils.OnClickListener
 import com.feyzaurkut.todoapp.utils.SharedPreferences
 import com.feyzaurkut.todoapp.utils.SwipeGesture
@@ -60,9 +62,7 @@ class HomeFragment : Fragment() {
                 initLogoutDialog()
             }
             btnCreateItem.setOnClickListener {
-                activity?.supportFragmentManager?.let {
-                    CreateNoteDialog().show(it, "CreateNoteDialog")
-                }
+                showCreateDialog()
             }
             swipeRefreshLayout.setOnRefreshListener {
                 getNotes()
@@ -118,9 +118,7 @@ class HomeFragment : Fragment() {
             notesList,
             object : OnClickListener {
                 override fun onClick(position: Int) {
-                    activity?.supportFragmentManager?.let {
-                        UpdateNoteDialog(notesList[position]).show(it, "UpdateNoteDialog")
-                    }
+                    showUpdateDialog(notesList[position])
                 }
             })
 
@@ -137,6 +135,57 @@ class HomeFragment : Fragment() {
 
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.rvToDoList)
         binding.rvToDoList.adapter = toDoAdapter
+    }
+
+    private fun showCreateDialog() {
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.create_note_dialog, null)
+        val mBuilder = AlertDialog.Builder(context).setView(mDialogView).show()
+
+        val createButton = mDialogView.findViewById<AppCompatImageView>(R.id.btnCreate)
+        val titleEditText = mDialogView.findViewById<AppCompatEditText>(R.id.etTitle)
+        val descriptionEditText = mDialogView.findViewById<AppCompatEditText>(R.id.etDescription)
+
+        createButton.setOnClickListener {
+            val title = titleEditText.text.toString()
+            val description = descriptionEditText.text.toString()
+            if (title.isEmpty() || description.isEmpty()) {
+                Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
+            } else {
+                homeViewModel.createNote(Note(null, title, description))
+                getNotes()
+                mBuilder.dismiss()
+            }
+        }
+    }
+
+    private fun showUpdateDialog(note: Note) {
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.update_note_dialog, null)
+        val mBuilder = AlertDialog.Builder(context).setView(mDialogView).show()
+
+        val createButton = mDialogView.findViewById<AppCompatImageView>(R.id.btnUpdate)
+        val titleEditText = mDialogView.findViewById<AppCompatEditText>(R.id.etTitle)
+        val descriptionEditText = mDialogView.findViewById<AppCompatEditText>(R.id.etDescription)
+
+        titleEditText.setText(
+            note.title.toString(),
+            TextView.BufferType.EDITABLE
+        )
+        descriptionEditText.setText(
+            note.description.toString(),
+            TextView.BufferType.EDITABLE
+        )
+        createButton.setOnClickListener {
+            val title = titleEditText.text.toString()
+            val description = descriptionEditText.text.toString()
+            if (title.isEmpty() || description.isEmpty()) {
+                Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
+            } else {
+                val updatedNote = Note(note.id, title, description)
+                homeViewModel.updateNote(updatedNote)
+                getNotes()
+                mBuilder.dismiss()
+            }
+        }
     }
 
     private fun onBackPressed() {
