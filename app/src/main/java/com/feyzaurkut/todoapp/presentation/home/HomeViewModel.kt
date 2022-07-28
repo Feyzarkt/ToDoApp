@@ -15,16 +15,12 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val createNoteUseCase: CreateNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
-    private val getSelectedNoteUseCase: GetSelectedNoteUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase
 ) : ViewModel() {
 
     private val _notesState = MutableStateFlow<RequestState<ArrayList<Note>>?>(null)
     val notesState: StateFlow<RequestState<ArrayList<Note>>?> = _notesState
-
-    private val _selectedNoteState = MutableStateFlow<RequestState<Note>?>(null)
-    val selectedNoteState: StateFlow<RequestState<Note>?> = _selectedNoteState
 
     fun createNote(note: Note) = viewModelScope.launch {
         createNoteUseCase.invoke(note).collect {
@@ -37,14 +33,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getSelectedNote(docId: String) = viewModelScope.launch {
-        getSelectedNoteUseCase.invoke(docId).collect {
-            _selectedNoteState.value = it
-        }
-    }
-
-    fun updateNote(docId: String, title: String, description: String) = viewModelScope.launch {
-        updateNoteUseCase.invoke(docId, title, description).collect {
+    fun updateNote(note: Note) = viewModelScope.launch {
+        updateNoteUseCase.invoke(note).collect {
         }
     }
 

@@ -7,8 +7,7 @@ interface FirestoreRepository {
 
     suspend fun createNote(note: Note)
     suspend fun getNotes(): ArrayList<Note>
-    suspend fun getSelectedNote(docId: String): Note
-    suspend fun updateNote(docId: String, title: String, description: String)
+    suspend fun updateNote(note: Note)
     suspend fun deleteNote(docId: String)
 
 }

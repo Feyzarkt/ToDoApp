@@ -43,28 +43,15 @@ class FirestoreRepositoryImpl @Inject constructor(
         return def.await()
     }
 
-    override suspend fun getSelectedNote(docId: String): Note {
-        val def = CompletableDeferred<Note>()
-        auth.uid?.let { uid ->
-            firebaseFirestore.collection(USERS).document(uid).collection(NOTES).document(docId)
-                .get()
-                .addOnCompleteListener {
-                    if (it.isSuccessful) it.result.let { noteDocument ->
-                        val note = Note(noteDocument.id, noteDocument.getString("title"), noteDocument.getString("description"))
-                        def.complete(note)
-                    }
-                }
-        }
-        return def.await()
-    }
-
-    override suspend fun updateNote(docId: String, title: String, description: String) {
+    override suspend fun updateNote(note: Note) {
         auth.uid?.let {
-            firebaseFirestore.collection(USERS).document(it).collection(NOTES).document(docId)
-                .update(mapOf(
-                "title" to title,
-                "description" to description
-            )).await()
+            note.id?.let { it1 ->
+                firebaseFirestore.collection(USERS).document(it).collection(NOTES).document(it1)
+                    .update(mapOf(
+                        "title" to note.title,
+                        "description" to note.description
+                    )).await()
+            }
         }
     }
 
