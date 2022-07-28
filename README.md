@@ -10,7 +10,7 @@ With the To-Do Application, you can create notes to your list, update them or de
 + [Hilt](https://developer.android.com/jetpack/compose/libraries#hilt)
 + [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
 + [Shared Preferences](https://developer.android.com/training/data-storage/shared-preferences)
-+ AlertDialog + DialogFragment()
++ [AlertDialog](https://developer.android.com/guide/topics/ui/dialogs)
 + [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
 + [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel#implement)
 + [Coroutines](https://developer.android.com/kotlin/coroutines)
