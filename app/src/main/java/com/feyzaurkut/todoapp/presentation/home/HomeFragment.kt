@@ -36,6 +36,7 @@ import javax.inject.Inject
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var notesList: ArrayList<Note>
 
     @Inject
     lateinit var auth: FirebaseAuth
@@ -92,8 +93,9 @@ class HomeFragment : Fragment() {
                     when (notesResult) {
                         is RequestState.Success -> {
                             binding.progressBar.isVisible = false
-                            Log.e("Success", notesResult.data.toString())
-                            initRecycler(notesResult.data)
+                            Log.e("Success", notesResult.data.toString()+ notesResult.data.indices)
+                            notesList = notesResult.data
+                            initRecycler()
                             binding.swipeRefreshLayout.isRefreshing = false
                         }
                         is RequestState.Error -> {
@@ -110,7 +112,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initRecycler(notesList: ArrayList<Note>) {
+    private fun initRecycler() {
 
         val toDoAdapter = ToDoListRecyclerAdapter(
             requireContext(),
@@ -121,6 +123,7 @@ class HomeFragment : Fragment() {
                     showUpdateDialog(notesList[position])
                 }
             })
+        binding.rvToDoList.adapter = toDoAdapter
 
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -132,9 +135,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.rvToDoList)
-        binding.rvToDoList.adapter = toDoAdapter
     }
 
     private fun showCreateDialog() {
@@ -151,7 +152,7 @@ class HomeFragment : Fragment() {
             if (title.isEmpty() || description.isEmpty()) {
                 Toast.makeText(context, "Please check the fields", Toast.LENGTH_SHORT).show()
             } else {
-                homeViewModel.createNote(Note(null, title, description))
+                homeViewModel.createNote(Note(auth.uid, title, description))
                 getNotes()
                 mBuilder.dismiss()
             }
